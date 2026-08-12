@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: helpdesk
+
+  # H2 baza u file rezimu - podaci prezivljavaju restart aplikacije,
+  # a nije potrebna nikakva instalacija baze na racunaru.
+  datasource:
+    url: jdbc:h2:file:./data/helpdesk;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+# Podesavanja JWT mehanizma.
+# U produkciji bi tajni kljuc dolazio iz promenljive okruzenja (HELPDESK_JWT_SECRET).
+app:
+  jwt:
+    secret: ${HELPDESK_JWT_SECRET:it355-help-desk-tajni-kljuc-za-potpisivanje-jwt-tokena-2026}
+    expiration-ms: 86400000   # 24 sata
+  cors:
+    allowed-origins: http://localhost:5173,http://localhost:3000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+
+logging:
+  level:
+    org.springframework.security: INFO
