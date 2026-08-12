@@ -1,0 +1,36 @@
+# ---- Java / Maven ----
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+*.log
+
+# ---- Baza (H2 file mode) ----
+data/
+*.db
+*.mv.db
+*.trace.db
+
+# ---- Node / React ----
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+
+# ---- IDE ----
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# ---- OS ----
+Thumbs.db
+.DS_Store
+
+# ---- Lokalna konfiguracija sa tajnama ----
+application-local.yml
+.env
+.env.local
