@@ -123,7 +123,7 @@ public class MessageService {
         }
 
         List<MessageResponse> messages =
-                messageRepository.findByConversationIdOrderBySentAtAsc(conversation.getId()).stream()
+                messageRepository.findByConversationWithSender(conversation.getId()).stream()
                         .map(message -> MessageResponse.from(message, principal.getId()))
                         .toList();
 
