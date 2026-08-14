@@ -23,6 +23,14 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     long countByAssigneeIdAndStatusNot(Long assigneeId, TicketStatus status);
 
+    /**
+     * Tiketi koji jos nisu zatvoreni, zajedno sa prioritetom.
+     * Koristi se za proveru SLA roka, koji zavisi od prioriteta pa se ne moze
+     * izraziti prostim upitom - JOIN FETCH sprecava po jedan dodatni upit za svaki tiket.
+     */
+    @Query("SELECT t FROM Ticket t JOIN FETCH t.priority WHERE t.status <> :status")
+    List<Ticket> findActiveWithPriority(@Param("status") TicketStatus status);
+
     /** Ucitava tiket zajedno sa vezanim entitetima da bi se izbegao N+1 problem. */
     @Query("""
             SELECT t FROM Ticket t

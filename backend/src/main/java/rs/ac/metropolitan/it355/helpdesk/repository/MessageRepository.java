@@ -15,6 +15,18 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
     List<Message> findByConversationIdOrderBySentAtAsc(Long conversationId);
 
+    /**
+     * Poruke sa vec ucitanim posiljaocem - bez ovoga bi prikaz prepiske od
+     * trideset poruka pokrenuo trideset dodatnih upita za imena posiljalaca.
+     */
+    @Query("""
+            SELECT m FROM Message m
+            JOIN FETCH m.sender
+            WHERE m.conversation.id = :conversationId
+            ORDER BY m.sentAt ASC
+            """)
+    List<Message> findByConversationWithSender(@Param("conversationId") Long conversationId);
+
     /** Broj neprocitanih poruka u jednoj prepisci iz ugla prijavljenog korisnika. */
     @Query("""
             SELECT COUNT(m) FROM Message m
