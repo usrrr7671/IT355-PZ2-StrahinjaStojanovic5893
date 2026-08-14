@@ -3,6 +3,7 @@ package rs.ac.metropolitan.it355.helpdesk.exception;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -79,6 +80,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ApiError> handleIllegalArgument(IllegalArgumentException ex, HttpServletRequest request) {
         return build(HttpStatus.BAD_REQUEST, "Bad Request", ex.getMessage(), request);
+    }
+
+    /**
+     * Prekrsen uslov integriteta u bazi - najcesce jedinstveni indeks ili strani kljuc.
+     *
+     * Servisi ovakve slucajeve proveravaju unapred, pa je ovo zastita za dva preostala
+     * scenarija: dva istovremena zahteva koja prodju istu proveru, i propust u kodu.
+     * Bez ovog handlera takva greska bi klijentu stigla kao neprozirna 500.
+     */
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ApiError> handleDataIntegrity(DataIntegrityViolationException ex,
+                                                        HttpServletRequest request) {
+        log.warn("Prekrsen uslov integriteta na putanji {}: {}", request.getRequestURI(), ex.getMostSpecificCause().getMessage());
+        return build(HttpStatus.CONFLICT, "Conflict",
+                "Podatak se ne moze sacuvati jer bi narusio povezanost sa drugim zapisima.", request);
     }
 
     /**
