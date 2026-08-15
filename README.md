@@ -1,7 +1,5 @@
 # Pult — Help desk / ticketing sistem
 
-Drugi projektni zadatak iz predmeta **IT355 – Veb sistemi 2**, Univerzitet Metropolitan Beograd.
-
 - **Student:** Strahinja Stojanović
 - **Indeks:** 5893
 - **Tema:** Help desk / ticketing sistem sa RBAC kontrolom pristupa i internom prepiskom
