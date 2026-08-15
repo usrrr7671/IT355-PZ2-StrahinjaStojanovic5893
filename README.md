@@ -5,7 +5,7 @@ Drugi projektni zadatak iz predmeta **IT355 – Veb sistemi 2**, Univerzitet Met
 - **Student:** Strahinja Stojanović
 - **Indeks:** 5893
 - **Tema:** Help desk / ticketing sistem sa RBAC kontrolom pristupa i internom prepiskom
-- **Dokumentacija:** [`docs/DOKUMENTACIJA.md`](docs/DOKUMENTACIJA.md)
+- **Dokumentacija:** [`docs/DOKUMENTACIJA.md`](docs/DOKUMENTACIJA.md) — isti sadržaj za predaju: [`docs/IT355-PZ2-dokumentacija.docx`](docs/IT355-PZ2-dokumentacija.docx)
 
 ## O aplikaciji
 

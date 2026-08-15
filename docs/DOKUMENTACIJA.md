@@ -1952,7 +1952,8 @@ IT355-PZ2-StrahinjaStojanovic5893/
 │       ├── strane/             Ekrani aplikacije
 │       └── util/               Formatiranje i prevod šifarnika
 ├── docs/
-│   ├── DOKUMENTACIJA.md        Ovaj dokument
-│   └── slike/                  Slike ekrana
+│   ├── DOKUMENTACIJA.md        Ovaj dokument (izvorni oblik)
+│   ├── IT355-PZ2-dokumentacija.docx   Isti dokument za predaju
+│   └── slike/                  Slike ekrana i dijagrami
 └── README.md
 ```
